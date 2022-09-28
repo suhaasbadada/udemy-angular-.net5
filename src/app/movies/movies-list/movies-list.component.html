@@ -1,0 +1,21 @@
+<!-- <div>
+    {{smovie.title | uppercase}},
+    {{smovie.releaseDate | date:"dd-MMMM-yyyy" | uppercase}},
+    {{smovie.lead | lowercase}},
+    {{smovie.director}},
+    {{smovie.tprice | currency:"INR"}}
+</div> -->
+
+<app-generic-list [list]="movies">
+    <ng-container content>
+        <div *ngFor="let smovie of movies; let i=index" class="movie-container">
+            <h2>#{{i+1}}
+            {{smovie.title | uppercase}}</h2>
+            <button style="margin-left:1rem;" (click)="remove(i)">Remove</button>
+            <div>{{smovie.releaseDate | date:"dd-MMMM-yyyy" | uppercase}}</div>
+            <div>{{smovie.lead | lowercase}}</div>
+            <div>{{smovie.director}}</div>
+            <div>{{smovie.tprice | currency:"INR"}}</div>
+        </div>
+    </ng-container>
+</app-generic-list>
