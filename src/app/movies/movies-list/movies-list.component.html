@@ -8,14 +8,19 @@
 
 <app-generic-list [list]="movies">
     <ng-container content>
+        <div class="movies-container">
         <div *ngFor="let smovie of movies; let i=index" class="movie-container">
-            <h2>#{{i+1}}
-            {{smovie.title | uppercase}}</h2>
-            <button style="margin-left:1rem;" (click)="remove(i)">Remove</button>
-            <div>{{smovie.releaseDate | date:"dd-MMMM-yyyy" | uppercase}}</div>
-            <div>{{smovie.lead | lowercase}}</div>
-            <div>{{smovie.director}}</div>
-            <div>{{smovie.tprice | currency:"INR"}}</div>
+           <a>
+            <img [src]="smovie.poster" alt="Poster"/>
+           </a>
+           <p>
+            <a>{{smovie.title}}</a>
+           </p>
+           <div>
+            <a mat-flat-button color="primary">Edit</a>
+            <button mat-flat-button color="warn" type="button">Delete</button>
+           </div>
         </div>
+    </div>
     </ng-container>
 </app-generic-list>

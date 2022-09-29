@@ -9,7 +9,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { MenuComponent } from './menu/menu.component';
 import { RatingComponent } from './utilies/rating/rating.component';
-import { LifecycletestComponent } from './lifecycletest/lifecycletest.component';
+import { HomeComponent } from './home/home.component';
+import { IndexGenresComponent } from './genres/index-genres/index-genres.component';
+import { CreateGenreComponent } from './genres/create-genre/create-genre.component';
+import { IndexActorsComponent } from './actors/index-actors/index-actors.component';
+import { CreateActorComponent } from './actors/create-actor/create-actor.component';
+import { IndexMovieTheaterComponent } from './movie-theaters/index-movie-theater/index-movie-theater.component';
+import { CreateMovieTheaterComponent } from './movie-theaters/create-movie-theater/create-movie-theater.component';
+import { CreateMovieComponent } from './movies/create-movie/create-movie.component';
+import { EditActorComponent } from './actors/edit-actor/edit-actor.component';
+import { EditGenreComponent } from './genres/edit-genre/edit-genre.component';
+import { EditMovieTheaterComponent } from './movie-theaters/edit-movie-theater/edit-movie-theater.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +28,17 @@ import { LifecycletestComponent } from './lifecycletest/lifecycletest.component'
     GenericListComponent,
     MenuComponent,
     RatingComponent,
-    LifecycletestComponent
+    HomeComponent,
+    IndexGenresComponent,
+    CreateGenreComponent,
+    IndexActorsComponent,
+    CreateActorComponent,
+    IndexMovieTheaterComponent,
+    CreateMovieTheaterComponent,
+    CreateMovieComponent,
+    EditActorComponent,
+    EditGenreComponent,
+    EditMovieTheaterComponent
   ],
   imports: [
     BrowserModule,
