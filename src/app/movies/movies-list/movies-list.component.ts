@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MoviesService } from '../movies.service';
 
 @Component({
   selector: 'app-movies-list',
@@ -7,23 +8,20 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MoviesListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private moviesService:MoviesService) { }
 
   ngOnInit(): void{
   }
   
   @Input()
   movies:any;
-  
-  smovie={
-    title:'Spider-Man',
-    releaseDate: new Date(),
-    lead: 'Toby Maguire, James Franco, Kirsten Dunst, Willem Dafoe',
-    director: 'sam raimi',
-    tprice: 300.51
-  };
 
-  remove(ind:number){
-    this.movies.splice(ind,1);
+  @Output()
+  onDelete=new EventEmitter<void>();
+
+  remove(id:number){
+    this.moviesService.delete(id).subscribe(()=>{
+      this.onDelete.emit();
+    });
   }
 } 

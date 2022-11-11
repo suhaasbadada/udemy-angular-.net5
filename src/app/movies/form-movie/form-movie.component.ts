@@ -1,6 +1,8 @@
 import { Component, Input, Output, OnInit, EventEmitter, KeyValueDiffers } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { TitleStrategy } from '@angular/router';
+import { actorsMovieDTO } from 'src/app/actors/actors.model';
 import { multipleSelectorModel } from 'src/app/utils/multiple-selector/multiple-selector.module';
 import { movieCreationDTO, movieDTO } from '../movies.model';
 
@@ -16,20 +18,15 @@ export class FormMovieComponent implements OnInit {
   @Input() model!:movieDTO;
   @Output() onSaveChanges=new EventEmitter<movieCreationDTO>();
 
-  nonSelectedGenres: multipleSelectorModel[]=[
-    {key:1,value:'Drama'},
-    {key:2,value:'Action'},
-    {key:3,value:'Comedy'}
-  ];
+  @Input() nonSelectedGenres: multipleSelectorModel[]=[];
+  @Input() selectedGenres: multipleSelectorModel[]=[];
 
-  selectedGenres: multipleSelectorModel[]=[];
+  @Input() nonSelectedMovieTheaters: multipleSelectorModel[]=[];
+  @Input() selectedMovieTheaters: multipleSelectorModel[]=[];
 
-  nonSelectedMovieTheaters: multipleSelectorModel[]=[
-    {key:1,value:'Forum'},
-    {key:2,value:'Inorbit'},
-    {key:3,value:'Cinetown'}
-  ];
-  selectedMovieTheaters: multipleSelectorModel[]=[];
+  @Input() selectedActors:actorsMovieDTO[]=[];
+
+  inTh=false;
 
   ngOnInit(): void {
     this.form=this.formBuilder.group({
@@ -40,7 +37,8 @@ export class FormMovieComponent implements OnInit {
       releaseDate:'',
       poster:'',
       genresIds:'',
-      movieTheatersIds:''
+      movieTheatersIds:'',
+      actors:''
     })
 
     if(this.model!==undefined){
@@ -54,6 +52,13 @@ export class FormMovieComponent implements OnInit {
 
     const movieTheatersIds=this.selectedMovieTheaters.map(value=>value.key);
     this.form.get('movieTheatersIds')!.setValue(movieTheatersIds);
+
+    const actors=this.selectedActors.map(val=>{
+      return {id:val.id,character:val.character}
+    });
+    this.form.get('actors')!.setValue(actors);
+    this.form.get('inTheatres').setValue(this.inTh);
+    console.log(this.form.value);
     this.onSaveChanges.emit(this.form.value);
   }
 
@@ -64,4 +69,8 @@ export class FormMovieComponent implements OnInit {
   changeMarkdown(content:string){
     this.form.get('summary')?.setValue(content);
   }
+  
+  showOptions(event:MatCheckboxChange): void {
+   this.inTh=event.checked;
+}
 }

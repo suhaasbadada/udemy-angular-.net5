@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { MarkdownModule } from 'ngx-markdown';
+import { HttpClientModule } from '@angular/common/http';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,6 +37,8 @@ import { FormMovieComponent } from './movies/form-movie/form-movie.component';
 import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
 import { MultipleSelectorComponent } from './utils/multiple-selector/multiple-selector.component';
 import { ActorsAutocompleteComponent } from './actors/actors-autocomplete/actors-autocomplete.component';
+import { DisplayErrorsComponent } from './utils/display-errors/display-errors.component';
+import { MovieDetailsComponent } from './movies/movie-details/movie-details.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +68,9 @@ import { ActorsAutocompleteComponent } from './actors/actors-autocomplete/actors
     FormMovieComponent,
     EditMovieComponent,
     MultipleSelectorComponent,
-    ActorsAutocompleteComponent
+    ActorsAutocompleteComponent,
+    DisplayErrorsComponent,
+    MovieDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +80,9 @@ import { ActorsAutocompleteComponent } from './actors/actors-autocomplete/actors
     ReactiveFormsModule,
     FormsModule,
     MarkdownModule.forRoot(),
-    LeafletModule
+    LeafletModule,
+    HttpClientModule,
+    SweetAlert2Module.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

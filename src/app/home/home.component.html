@@ -1,9 +1,9 @@
 <h2>
     Movies in Theatres
 </h2>
-<app-movies-list [movies]="moviesInTheatres"></app-movies-list>
+<app-movies-list (onDelete)="onDelete()" [movies]="moviesInTheatres"></app-movies-list>
 
 <h2>
     Future Releases
 </h2>
-<app-movies-list [movies]="moviesFutureReleases"></app-movies-list>
+<app-movies-list (onDelete)="onDelete()" [movies]="moviesFutureReleases"></app-movies-list>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { movieTheatersDTO } from '../movie-theaters.model';
+import { MovieTheatersService } from '../movie-theaters.service';
 
 @Component({
   selector: 'app-index-movie-theater',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexMovieTheaterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private movieTheatersService:MovieTheatersService) { }
+
+  movieTheaters!:movieTheatersDTO[];
+  displayColumns=['name','actions'];
 
   ngOnInit(): void {
+    this.loadData();
   }
 
+  loadData(){
+    this.movieTheatersService.get().subscribe(movieTheaters=>this.movieTheaters=movieTheaters);
+  }
+
+  delete(id:number){
+    this.movieTheatersService.delete(id).subscribe(()=>this.loadData());
+  }
 }
