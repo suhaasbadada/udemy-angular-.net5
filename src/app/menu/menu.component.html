@@ -11,27 +11,56 @@
         </a>
     </div>
 
-    <div>
-        <a mat-button routerLink="/genres">
-            Genres
-        </a>
-    </div>
+    <app-authorize-view [role]="'admin'">
+        <ng-container authorized>
+            <div>
+                <a mat-button routerLink="/genres">
+                    Genres
+                </a>
+            </div>
+        
+            <div>
+                <a mat-button routerLink="/actors">
+                    Actors
+                </a>
+            </div>
+        
+            <div>
+                <a mat-button routerLink="/movie-theaters">
+                    Movie Theatres
+                </a>
+            </div>
+        
+            <div>
+                <a mat-button routerLink="/movies/create">
+                    Create Movie
+                </a>
+            </div>
 
-    <div>
-        <a mat-button routerLink="/actors">
-            Actors
-        </a>
-    </div>
+            <div>
+                <a mat-button routerLink="users">
+                   Users
+                </a>
+            </div>
+        </ng-container>
+    </app-authorize-view>
 
-    <div>
-        <a mat-button routerLink="/movie-theaters">
-            Movie Theatres
-        </a>
+    <div class="space">
+    
     </div>
+    
+    <app-authorize-view>
+        
+        <ng-container authorized>
+            <span>Hello, {{securityService.getFieldFromJWT('email')}}</span>
+            <a mat-button (click)="securityService.logout()" routerLink="/">Logout</a>
+        </ng-container>
 
-    <div>
-        <a mat-button routerLink="/movies/create">
-            Create Movie
-        </a>
-    </div>
+        <ng-container notAuthorized>
+            <a mat-button routerLink="login">Login</a>
+            <a mat-button routerLink="register">Register</a>
+        </ng-container>
+
+    </app-authorize-view>
+
 </mat-toolbar>
